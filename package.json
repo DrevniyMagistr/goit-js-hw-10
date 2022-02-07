@@ -19,6 +19,7 @@
   "homepage": "https://github.com/DrevniyMagistr/goit-js-hw-10#readme",
   "devDependencies": {
     "lodash.debounce": "^4.0.8",
+    "notiflix": "^3.2.4",
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",
