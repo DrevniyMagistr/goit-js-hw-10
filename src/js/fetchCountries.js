@@ -1,6 +1,8 @@
-const URL = `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`;
+const URL = 'https://restcountries.com/v3.1/name';
 
 
 export function fetchCountries(name) {
-  return fetch(URL).then(response => response.json());
+  return fetch(`${URL}/${name}?fields=name,capital,population,flags,languages`).then(response =>
+    response.json(),
+  );
 }
