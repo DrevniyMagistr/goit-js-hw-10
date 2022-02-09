@@ -1,22 +1,23 @@
 import { fetchCountries } from './js/fetchCountries';
-import debounce from 'lodash.debounce';
+import { onMarkupCards, onReset } from './js/markupCard';
+import { refs } from './js/getRefs';
 import { Notify } from 'notiflix';
+import debounce from 'lodash.debounce';
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
 
-const refs = {
-  input: document.querySelector('#search-box'),
-  listCountry: document.querySelector('.country-list'),
-  aboutCountry: document.querySelector('.country-info'),
-};
-
-
-const onSearchCounty = (e) => {
+const onSearchCounty = e => {
   e.preventDefault();
   let inputResult = e.target.value.trim();
+
+  fetchCountries(inputResult)
+    .then(onMarkupCards)
+    .catch(Notify.failure('Oops, there is no country with that name'));
+
+  if (!inputResult) {
+    onReset();
+  }
 };
 
-
-refs.input.addEventListener('input', debounce(onSearchCounty), DEBOUNCE_DELAY);
-
+refs.input.addEventListener('input', debounce(onSearchCounty, DEBOUNCE_DELAY));
